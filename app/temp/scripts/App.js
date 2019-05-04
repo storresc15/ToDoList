@@ -76,7 +76,7 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _jquery2.default)("li").click(function () {
+(0, _jquery2.default)("ul").on("click", "li", function () {
     (0, _jquery2.default)(this).toggleClass("completed");
 }); /*import MobileMenu from './modules/MobileMenu';
     import RevealOnScroll from './modules/RevealOnScroll';
@@ -92,11 +92,23 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
     */
 
 
-(0, _jquery2.default)("span").click(function (event) {
+(0, _jquery2.default)("ul").on("click", "span", function (event) {
     (0, _jquery2.default)(this).parent().fadeOut(500, function () {
         (0, _jquery2.default)(this).remove();
     });
     event.stopPropagation();
+});
+
+(0, _jquery2.default)("input[type='text']").keypress(function (event) {
+    if (event.which === 13) {
+        var todoText = (0, _jquery2.default)(this).val();
+        (0, _jquery2.default)(this).val("");
+        (0, _jquery2.default)("ul").append('<li><span><i class="fa fa-trash"></i></span> ' + todoText + "</li>");
+    }
+});
+
+(0, _jquery2.default)(".fa-plus").click(function () {
+    (0, _jquery2.default)("input[type='text']").fadeToggle();
 });
 
 /***/ }),
